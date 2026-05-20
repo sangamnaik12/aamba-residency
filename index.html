@@ -50,18 +50,13 @@
       padding:8px 5%;
       box-shadow:0 2px 24px rgba(0,0,0,.35);
     }
-    /* Logo container keeps a bg so white logo is readable before scroll */
-    .nav-logo-wrap {
-      background:rgba(255,255,255,.12);
-      border-radius:12px;
-      padding:6px 14px;
-      display:flex; align-items:center;
-      backdrop-filter:blur(6px);
-      border:1px solid rgba(255,255,255,.18);
-      transition:all .4s;
+    .nav-logo-wrap { display:flex; align-items:center; transition:all .4s; }
+    .nav-logo-wrap img {
+      height:64px; width:auto;
+      filter:drop-shadow(0 2px 6px rgba(0,0,0,.45));
+      transition:height .4s;
     }
-    #nav.stuck .nav-logo-wrap { background:rgba(255,255,255,.08); }
-    .nav-logo-wrap img { height:72px; width:auto; }
+    #nav.stuck .nav-logo-wrap img { height:52px; }
     .nav-links { list-style:none; display:flex; gap:28px; align-items:center; }
     .nav-links a {
       color:rgba(255,255,255,.9); font-size:.875rem; font-weight:500;
@@ -303,8 +298,8 @@
     /* ── FOOTER ──────────────────────────────────── */
     footer { background:var(--navy-dark);color:rgba(255,255,255,.65);padding:58px 6% 26px; }
     .ft-grid { display:grid;grid-template-columns:2fr 1fr 1fr;gap:52px;margin-bottom:44px; }
-    .ft-brand .ft-logo-wrap { background:rgba(255,255,255,.1);border-radius:12px;padding:10px 18px;display:inline-block;margin-bottom:16px; }
-    .ft-brand img { height:70px;width:auto; }
+    .ft-brand .ft-logo-wrap { display:inline-block;margin-bottom:16px; }
+    .ft-brand img { height:65px;width:auto;filter:drop-shadow(0 2px 6px rgba(0,0,0,.4)); }
     .ft-brand p { line-height:1.85;font-size:.88rem;max-width:280px; }
     .ft-col h4 { color:#fff;font-size:.82rem;font-weight:700;text-transform:uppercase;letter-spacing:1.8px;margin-bottom:18px;padding-bottom:10px;position:relative; }
     .ft-col h4::after { content:'';position:absolute;bottom:0;left:0;width:28px;height:2px;background:var(--gold);border-radius:2px; }
@@ -351,7 +346,7 @@
 <!-- ═══ NAVBAR ═══════════════════════════════════════════ -->
 <nav id="nav">
   <div class="nav-logo-wrap">
-    <img src="LOGO WITH NAME.png" alt="Aamba Residency" />
+    <img src="AAMBA LOGO FOR WEBSITE.png" alt="Aamba Residency" />
   </div>
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
@@ -733,7 +728,7 @@
   <div class="ft-grid">
     <div class="ft-brand">
       <div class="ft-logo-wrap">
-        <img src="LOGO WITH NAME.png" alt="Aamba Residency" />
+        <img src="AAMBA LOGO FOR WEBSITE.png" alt="Aamba Residency" />
       </div>
       <p>Your trusted home away from home in Sundargarh. Comfortable stays, warm hospitality, and memories that last a lifetime.</p>
     </div>
