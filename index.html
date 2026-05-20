@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aamba Residency – Your Home Away From Home | Sundargarh, Odisha</title>
+  <meta name="description" content="Aamba Residency – Premium hotel in Sundargarh, Odisha. 20 AC rooms, free buffet breakfast, multi-cuisine restaurant, free parking & more." />
+
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <style>
+    :root {
+      --gold:       #F5A623;
+      --gold-dark:  #D4891A;
+      --gold-light: #FFD166;
+      --navy:       #1B2A6B;
+      --navy-dark:  #0D1B4B;
+      --navy-mid:   #243888;
+      --green:      #2A7A3E;
+      --cream:      #FFFBF2;
+      --white:      #FFFFFF;
+      --gray-light: #F6F8FA;
+      --text:       #1A1A2E;
+      --muted:      #6B7280;
+      --radius:     18px;
+      --shadow-sm:  0 4px 16px rgba(0,0,0,.08);
+      --shadow-md:  0 10px 40px rgba(0,0,0,.12);
+      --shadow-lg:  0 20px 60px rgba(0,0,0,.16);
+    }
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { font-family:'Inter',sans-serif; color:var(--text); overflow-x:hidden; }
+    a { text-decoration:none; color:inherit; }
+    img { display:block; max-width:100%; }
+
+    .reveal { opacity:0; transform:translateY(28px); transition:.65s ease; }
+    .reveal.up { opacity:1; transform:none; }
+
+    /* ── NAVBAR ─────────────────────────────────── */
+    #nav {
+      position:fixed; top:0; left:0; right:0; z-index:900;
+      padding:12px 5%;
+      display:flex; align-items:center; justify-content:space-between;
+      transition:all .4s;
+    }
+    #nav.stuck {
+      background:rgba(13,27,75,.97);
+      backdrop-filter:blur(12px);
+      padding:8px 5%;
+      box-shadow:0 2px 24px rgba(0,0,0,.35);
+    }
+    /* Logo container keeps a bg so white logo is readable before scroll */
+    .nav-logo-wrap {
+      background:rgba(255,255,255,.12);
+      border-radius:12px;
+      padding:6px 14px;
+      display:flex; align-items:center;
+      backdrop-filter:blur(6px);
+      border:1px solid rgba(255,255,255,.18);
+      transition:all .4s;
+    }
+    #nav.stuck .nav-logo-wrap { background:rgba(255,255,255,.08); }
+    .nav-logo-wrap img { height:72px; width:auto; }
+    .nav-links { list-style:none; display:flex; gap:28px; align-items:center; }
+    .nav-links a {
+      color:rgba(255,255,255,.9); font-size:.875rem; font-weight:500;
+      letter-spacing:.6px; text-transform:uppercase; transition:color .3s;
+    }
+    .nav-links a:hover { color:var(--gold); }
+    .nav-book {
+      background:linear-gradient(135deg,var(--gold),var(--gold-dark));
+      color:var(--navy-dark) !important;
+      padding:8px 22px; border-radius:50px; font-weight:700 !important;
+      box-shadow:0 4px 14px rgba(245,166,35,.45);
+      transition:transform .3s, box-shadow .3s !important;
+    }
+    .nav-book:hover { transform:translateY(-2px); box-shadow:0 7px 22px rgba(245,166,35,.65) !important; }
+
+    /* ── HERO ────────────────────────────────────── */
+    #hero {
+      min-height:100vh;
+      display:flex; align-items:center; justify-content:center;
+      position:relative; overflow:hidden;
+      background:linear-gradient(140deg,#060e28 0%,#0d1b4b 30%,#1b2a6b 60%,#0d2254 100%);
+    }
+    .hb-circle { position:absolute; border-radius:50%; animation:floatC 10s ease-in-out infinite; }
+    .c1 { width:520px;height:520px;top:-120px;right:-120px;background:var(--gold);opacity:.06; }
+    .c2 { width:320px;height:320px;bottom:-80px;left:-60px;background:var(--green);opacity:.07;animation-delay:3s; }
+    .c3 { width:180px;height:180px;top:38%;left:18%;background:#fff;opacity:.05;animation-delay:6s; }
+    .c4 { width:90px;height:90px;top:20%;right:25%;background:var(--gold-light);opacity:.1;animation-delay:1.5s; }
+    @keyframes floatC { 0%,100%{transform:translateY(0) scale(1)} 50%{transform:translateY(-22px) scale(1.04)} }
+    #hero::before { content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,transparent,var(--gold),transparent); }
+
+    .hero-inner { position:relative;z-index:2;text-align:center;color:#fff;max-width:820px;padding:0 20px; }
+    .hero-pill {
+      display:inline-block;
+      border:1px solid rgba(245,166,35,.55);background:rgba(245,166,35,.12);
+      color:var(--gold);padding:6px 22px;border-radius:50px;
+      font-size:.78rem;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;
+      margin-bottom:22px;animation:fadeUp .8s ease both;
+    }
+    .hero-title {
+      font-family:'Playfair Display',serif;
+      font-size:clamp(2.6rem,6vw,5.2rem);font-weight:700;line-height:1.1;
+      margin-bottom:18px;animation:fadeUp .8s .15s ease both;
+    }
+    .hero-title em {
+      font-style:normal;
+      background:linear-gradient(90deg,var(--gold),var(--gold-light));
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+    }
+    .hero-sub { font-size:clamp(1rem,2vw,1.2rem);color:rgba(255,255,255,.75);margin-bottom:12px;animation:fadeUp .8s .25s ease both; }
+    .hero-loc { display:flex;align-items:center;justify-content:center;gap:7px;color:var(--gold);font-size:.9rem;font-weight:500;margin-bottom:40px;animation:fadeUp .8s .35s ease both; }
+    .hero-btns { display:flex;gap:14px;justify-content:center;flex-wrap:wrap;animation:fadeUp .8s .45s ease both; }
+
+    .btn { display:inline-flex;align-items:center;gap:8px;padding:14px 32px;border-radius:50px;font-size:.95rem;font-weight:600;cursor:pointer;border:2px solid transparent;transition:all .3s ease; }
+    .btn-gold { background:linear-gradient(135deg,var(--gold),var(--gold-dark));color:var(--navy-dark);box-shadow:0 5px 22px rgba(245,166,35,.45); }
+    .btn-gold:hover { transform:translateY(-3px);box-shadow:0 10px 30px rgba(245,166,35,.65); }
+    .btn-ghost { border-color:rgba(255,255,255,.5);color:#fff;background:rgba(255,255,255,.08);backdrop-filter:blur(8px); }
+    .btn-ghost:hover { background:rgba(255,255,255,.18);border-color:#fff;transform:translateY(-3px); }
+
+    .scroll-hint { position:absolute;bottom:28px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:6px;color:rgba(255,255,255,.4);font-size:.7rem;letter-spacing:2px;text-transform:uppercase;animation:fadeIn 1s 1.2s both; }
+    .scroll-hint::after { content:'';width:1px;height:40px;background:linear-gradient(to bottom,rgba(255,255,255,.4),transparent);animation:scrollL 1.8s ease-in-out infinite; }
+    @keyframes scrollL { 0%,100%{transform:scaleY(1);opacity:1} 50%{transform:scaleY(.5);opacity:.4} }
+
+    /* ── STATS RIBBON ────────────────────────────── */
+    .stats-ribbon { background:linear-gradient(135deg,var(--navy-dark),var(--navy));display:flex;justify-content:center;flex-wrap:wrap; }
+    .stat { text-align:center;padding:22px 46px;border-right:1px solid rgba(255,255,255,.12);color:#fff; }
+    .stat:last-child { border-right:none; }
+    .stat-n { font-family:'Playfair Display',serif;font-size:2rem;font-weight:700;color:var(--gold);display:block; }
+    .stat-l { font-size:.72rem;text-transform:uppercase;letter-spacing:1.5px;color:rgba(255,255,255,.6);margin-top:2px;display:block; }
+
+    /* ── SECTION SHARED ──────────────────────────── */
+    .section { padding:84px 6%; }
+    .sh { text-align:center;margin-bottom:58px; }
+    .sh-tag { display:inline-block;color:var(--gold);font-size:.76rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:12px; }
+    .sh-title { font-family:'Playfair Display',serif;font-size:clamp(1.8rem,3.5vw,2.8rem);color:var(--navy-dark);margin-bottom:14px; }
+    .sh-line { width:56px;height:3px;margin:0 auto 18px;background:linear-gradient(90deg,var(--gold),var(--gold-light));border-radius:3px; }
+    .sh-desc { color:var(--muted);max-width:580px;margin:0 auto;line-height:1.85; }
+
+    /* ── ABOUT ───────────────────────────────────── */
+    #about { background:var(--cream); }
+    .about-wrap { display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;max-width:1100px;margin:0 auto; }
+    .about-card { background:linear-gradient(140deg,var(--navy) 0%,var(--navy-dark) 100%);border-radius:var(--radius);padding:50px 44px;color:#fff;position:relative;overflow:hidden; }
+    .about-card::before { content:'';position:absolute;top:-50px;right:-50px;width:200px;height:200px;background:var(--gold);border-radius:50%;opacity:.08; }
+    .about-card::after { content:'';position:absolute;bottom:-30px;left:-30px;width:120px;height:120px;background:var(--green);border-radius:50%;opacity:.1; }
+    .ac-icon { font-size:3.5rem;color:var(--gold);margin-bottom:18px; }
+    .about-card h3 { font-family:'Playfair Display',serif;font-size:1.65rem;margin-bottom:14px; }
+    .about-card p { color:rgba(255,255,255,.78);line-height:1.85;margin-bottom:22px; }
+    .ac-chips { display:flex;flex-wrap:wrap;gap:9px; }
+    .ac-chip { border:1px solid rgba(245,166,35,.45);background:rgba(245,166,35,.12);color:var(--gold);padding:5px 14px;border-radius:20px;font-size:.78rem;font-weight:500; }
+    .about-text .sh-tag { text-align:left; }
+    .about-text h2 { font-family:'Playfair Display',serif;font-size:1.9rem;color:var(--navy-dark);margin-bottom:18px; }
+    .about-text p { color:var(--muted);line-height:1.9;margin-bottom:16px; }
+    .check-list { list-style:none;display:flex;flex-direction:column;gap:11px; }
+    .check-list li { display:flex;align-items:flex-start;gap:11px;font-size:.93rem;color:var(--text); }
+    .check-list li i { color:var(--green);margin-top:2px;flex-shrink:0; }
+
+    /* ── ROOMS ───────────────────────────────────── */
+    #rooms { background:var(--white); }
+    .rooms-grid { display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:32px;max-width:900px;margin:0 auto; }
+    .room-card { border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow-sm);transition:transform .3s,box-shadow .3s; }
+    .room-card:hover { transform:translateY(-9px);box-shadow:var(--shadow-lg); }
+    .room-thumb { height:195px;position:relative;display:flex;align-items:center;justify-content:center; }
+    .room-thumb.t1 { background:linear-gradient(135deg,#1b2a6b,#2a3e8c,#3d5ab0); }
+    .room-thumb.t3 { background:linear-gradient(135deg,#7a3800,#d4891a,#f5a623); }
+    .room-thumb i { font-size:5rem;color:rgba(255,255,255,.22); }
+    .room-badge { position:absolute;top:14px;right:14px;background:var(--gold);color:var(--navy-dark);padding:4px 13px;border-radius:14px;font-size:.72rem;font-weight:700;text-transform:uppercase; }
+    .room-body { padding:24px; }
+    .room-body h3 { font-family:'Playfair Display',serif;font-size:1.35rem;color:var(--navy-dark);margin-bottom:8px; }
+    .room-body p { color:var(--muted);font-size:.875rem;line-height:1.72;margin-bottom:14px; }
+    .room-tags { display:flex;flex-wrap:wrap;gap:7px;margin-bottom:18px; }
+    .rtag { background:var(--gray-light);padding:4px 10px;border-radius:9px;font-size:.72rem;color:var(--muted);display:flex;align-items:center;gap:4px; }
+    .rtag i { color:var(--navy);font-size:.68rem; }
+    .room-price .amt { font-size:1.45rem;font-weight:700;color:var(--navy); }
+    .room-price .per { font-size:.78rem;color:var(--muted); }
+    .room-price .extra { display:block;font-size:.78rem;color:var(--muted);margin-top:4px; }
+
+    /* ── AMENITIES ───────────────────────────────── */
+    #amenities { background:var(--gray-light); }
+
+    /* Breakfast highlight banner */
+    .breakfast-banner {
+      background:linear-gradient(135deg,var(--navy-dark) 0%,var(--navy) 50%,var(--navy-mid) 100%);
+      border-radius:var(--radius); padding:40px 48px;
+      display:flex; align-items:center; gap:40px;
+      max-width:1020px; margin:0 auto 40px;
+      position:relative; overflow:hidden;
+      box-shadow:var(--shadow-md);
+    }
+    .breakfast-banner::before { content:'';position:absolute;top:-40px;right:-40px;width:200px;height:200px;background:var(--gold);border-radius:50%;opacity:.08; }
+    .breakfast-banner::after  { content:'';position:absolute;bottom:-30px;left:30%;width:150px;height:150px;background:var(--gold-light);border-radius:50%;opacity:.05; }
+    .bb-icon-wrap {
+      width:90px; height:90px; border-radius:20px; flex-shrink:0;
+      background:linear-gradient(135deg,var(--gold),var(--gold-dark));
+      display:flex; align-items:center; justify-content:center;
+      font-size:2.5rem; color:var(--navy-dark);
+      box-shadow:0 8px 24px rgba(245,166,35,.5);
+    }
+    .bb-text { position:relative;z-index:1; }
+    .bb-text .bb-exclusive {
+      display:inline-block;
+      background:rgba(245,166,35,.2); border:1px solid rgba(245,166,35,.5);
+      color:var(--gold); padding:4px 14px; border-radius:20px;
+      font-size:.72rem; font-weight:700; letter-spacing:2px; text-transform:uppercase;
+      margin-bottom:10px;
+    }
+    .bb-text h3 { font-family:'Playfair Display',serif;font-size:1.6rem;color:#fff;margin-bottom:8px; }
+    .bb-text p { color:rgba(255,255,255,.75);line-height:1.8;font-size:.9rem; }
+    .bb-text p strong { color:var(--gold); }
+    .bb-items { display:flex;flex-wrap:wrap;gap:8px;margin-top:14px; }
+    .bb-item { background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.85);padding:4px 12px;border-radius:14px;font-size:.78rem; }
+
+    .amen-grid { display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:22px;max-width:1020px;margin:0 auto; }
+    .amen-card { background:#fff;border-radius:var(--radius);padding:28px 18px;text-align:center;box-shadow:var(--shadow-sm);border:2px solid transparent;transition:all .3s ease; }
+    .amen-card:hover { border-color:var(--gold);transform:translateY(-6px);box-shadow:0 12px 32px rgba(245,166,35,.18); }
+    .amen-ico { width:56px;height:56px;border-radius:14px;background:linear-gradient(135deg,var(--navy),var(--navy-mid));display:flex;align-items:center;justify-content:center;margin:0 auto 14px;font-size:1.4rem;color:var(--gold);transition:.3s; }
+    .amen-card:hover .amen-ico { background:linear-gradient(135deg,var(--gold),var(--gold-dark));color:var(--navy-dark); }
+    .amen-name { font-size:.78rem;font-weight:700;color:var(--navy-dark);text-transform:uppercase;letter-spacing:.8px; }
+
+    /* ── REVIEWS SLIDER ──────────────────────────── */
+    #reviews { background:var(--cream); }
+    .reviews-slider-wrap { max-width:1020px;margin:0 auto;position:relative; }
+    .reviews-track-outer { overflow:hidden;border-radius:var(--radius); }
+    .reviews-track { display:flex;transition:transform .5s cubic-bezier(.4,0,.2,1); }
+
+    /* Each slide shows 1 card centered */
+    .rev-slide { min-width:100%;padding:0 4px; }
+    .rev-card {
+      background:#fff; border-radius:var(--radius); padding:32px 36px;
+      box-shadow:var(--shadow-md);
+      max-width:680px; margin:0 auto;
+    }
+    /* Google Maps screenshot style */
+    .rev-gmap-header {
+      display:flex; align-items:center; gap:8px;
+      margin-bottom:18px; padding-bottom:14px;
+      border-bottom:1px solid #f0f0f0;
+    }
+    .rev-g-logo { display:flex;gap:1px; }
+    .rev-g-logo span { font-size:.8rem;font-weight:800; }
+    .g-b{color:#4285F4} .g-r{color:#EA4335} .g-y{color:#FBBC05} .g-g{color:#34A853}
+    .rev-gmap-header .gmaps-label { font-size:.72rem;color:#666;margin-left:2px; }
+
+    .rev-reviewer { display:flex;align-items:center;gap:12px;margin-bottom:14px; }
+    .rev-avatar {
+      width:46px;height:46px;border-radius:50%;
+      display:flex;align-items:center;justify-content:center;
+      font-weight:700;font-size:1.1rem;color:#fff;flex-shrink:0;
+    }
+    .rev-reviewer-info strong { display:block;font-size:.93rem;color:#1a1a1a; }
+    .rev-reviewer-info span   { font-size:.78rem;color:#888; }
+    .rev-stars { color:#F5A623;font-size:1rem;letter-spacing:2px;margin-bottom:10px; }
+    .rev-text { font-size:.9rem;color:#3d3d3d;line-height:1.8; }
+    .rev-via { font-size:.72rem;color:#aaa;margin-top:14px;display:flex;align-items:center;gap:5px; }
+    .rev-via i { color:#4285F4; }
+
+    /* Slider controls */
+    .slider-arrows { display:flex;justify-content:center;gap:14px;margin-top:28px; }
+    .sldr-btn {
+      width:46px;height:46px;border-radius:50%;border:2px solid var(--navy);
+      background:#fff;color:var(--navy);font-size:1rem;cursor:pointer;
+      display:flex;align-items:center;justify-content:center;
+      transition:all .3s;
+    }
+    .sldr-btn:hover { background:var(--navy);color:#fff; }
+    .slider-dots { display:flex;justify-content:center;gap:8px;margin-top:16px; }
+    .s-dot { width:8px;height:8px;border-radius:50%;background:rgba(27,42,107,.25);cursor:pointer;transition:.3s; }
+    .s-dot.active { background:var(--navy);transform:scale(1.3); }
+
+    /* ── BOOK ONLINE ─────────────────────────────── */
+    #book { background:linear-gradient(140deg,var(--navy-dark) 0%,var(--navy) 50%,var(--navy-mid) 100%);text-align:center;position:relative;overflow:hidden; }
+    #book::before { content:'';position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(245,166,35,.06) 0%,transparent 68%); }
+    #book .sh-title { color:#fff; }
+    #book .sh-desc  { color:rgba(255,255,255,.65); }
+    .booking-row { display:flex;justify-content:center;gap:24px;flex-wrap:wrap;margin-top:42px;position:relative;z-index:1; }
+    .plat-card { background:#fff;border-radius:var(--radius);padding:36px 44px;min-width:230px;transition:transform .3s,box-shadow .3s;box-shadow:0 12px 44px rgba(0,0,0,.22); }
+    .plat-card:hover { transform:translateY(-9px);box-shadow:0 22px 64px rgba(0,0,0,.32); }
+    .plat-logo { font-size:1.65rem;font-weight:900;margin-bottom:6px; }
+    .mmt  { color:#e31c23; }
+    .goib { color:#e94560; }
+    .plat-sub { font-size:.78rem;color:var(--muted);margin-bottom:18px; }
+    .plat-btn { display:block;padding:10px 28px;border-radius:30px;font-size:.84rem;font-weight:700;color:#fff;transition:.3s; }
+    .plat-btn:hover { filter:brightness(1.1); }
+    .mmt-btn  { background:linear-gradient(135deg,#e31c23,#b51319); }
+    .goib-btn { background:linear-gradient(135deg,#e94560,#c03048); }
+    .book-or { color:rgba(255,255,255,.45);margin-top:28px;font-size:.85rem;position:relative;z-index:1; }
+    .book-or a { color:var(--gold);font-weight:600; }
+
+    /* ── LOCATION ────────────────────────────────── */
+    #location { background:var(--cream); }
+    .loc-wrap { display:grid;grid-template-columns:1fr 1fr;gap:52px;align-items:start;max-width:1100px;margin:0 auto; }
+    .map-box { border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow-lg);height:360px; }
+    .map-box iframe { width:100%;height:100%;border:none; }
+    .loc-info h3 { font-family:'Playfair Display',serif;font-size:1.75rem;color:var(--navy-dark);margin-bottom:26px; }
+    .ci { display:flex;align-items:flex-start;gap:14px;padding:18px 20px;background:#fff;border-radius:14px;box-shadow:var(--shadow-sm);margin-bottom:16px;transition:transform .3s,box-shadow .3s; }
+    a.ci:hover { transform:translateX(5px);box-shadow:0 8px 28px rgba(245,166,35,.18); }
+    .ci-ico { width:44px;height:44px;border-radius:12px;flex-shrink:0;background:linear-gradient(135deg,var(--navy),var(--navy-mid));display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:1rem; }
+    .ci-label { font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px; }
+    .ci-value { font-size:.93rem;font-weight:600;color:var(--navy-dark); }
+
+    /* ── FOOTER ──────────────────────────────────── */
+    footer { background:var(--navy-dark);color:rgba(255,255,255,.65);padding:58px 6% 26px; }
+    .ft-grid { display:grid;grid-template-columns:2fr 1fr 1fr;gap:52px;margin-bottom:44px; }
+    .ft-brand .ft-logo-wrap { background:rgba(255,255,255,.1);border-radius:12px;padding:10px 18px;display:inline-block;margin-bottom:16px; }
+    .ft-brand img { height:70px;width:auto; }
+    .ft-brand p { line-height:1.85;font-size:.88rem;max-width:280px; }
+    .ft-col h4 { color:#fff;font-size:.82rem;font-weight:700;text-transform:uppercase;letter-spacing:1.8px;margin-bottom:18px;padding-bottom:10px;position:relative; }
+    .ft-col h4::after { content:'';position:absolute;bottom:0;left:0;width:28px;height:2px;background:var(--gold);border-radius:2px; }
+    .ft-col ul { list-style:none;display:flex;flex-direction:column;gap:10px; }
+    .ft-col ul a { color:rgba(255,255,255,.55);font-size:.88rem;transition:color .3s; }
+    .ft-col ul a:hover { color:var(--gold); }
+    .ft-bottom { border-top:1px solid rgba(255,255,255,.1);padding-top:22px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:.82rem; }
+    .socials { display:flex;gap:10px; }
+    .soc { width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;color:#fff;font-size:.88rem;transition:all .3s; }
+    .soc:hover { background:var(--gold);color:var(--navy-dark);transform:translateY(-3px); }
+
+    /* ── WHATSAPP FLOAT ──────────────────────────── */
+    .wa-float { position:fixed;bottom:28px;right:28px;z-index:800;width:58px;height:58px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.7rem;box-shadow:0 5px 22px rgba(37,211,102,.52);animation:waPulse 2.4s ease-in-out infinite;transition:transform .3s,box-shadow .3s; }
+    .wa-float:hover { transform:scale(1.12);box-shadow:0 8px 30px rgba(37,211,102,.75); }
+    @keyframes waPulse { 0%,100%{box-shadow:0 5px 22px rgba(37,211,102,.52)} 50%{box-shadow:0 5px 38px rgba(37,211,102,.8),0 0 0 10px rgba(37,211,102,.08)} }
+
+    @keyframes fadeUp  { from{opacity:0;transform:translateY(26px)} to{opacity:1;transform:none} }
+    @keyframes fadeIn  { from{opacity:0} to{opacity:1} }
+
+    /* ── RESPONSIVE ──────────────────────────────── */
+    @media(max-width:900px) {
+      .nav-links { display:none; }
+      .about-wrap, .loc-wrap { grid-template-columns:1fr;gap:32px; }
+      .ft-grid { grid-template-columns:1fr 1fr;gap:32px; }
+      .breakfast-banner { flex-direction:column;gap:24px;padding:32px 28px; }
+    }
+    @media(max-width:600px) {
+      .section { padding:64px 5%; }
+      .stat { padding:14px 22px;border-right:none;border-bottom:1px solid rgba(255,255,255,.12);width:50%; }
+      .stat:nth-child(odd) { border-right:1px solid rgba(255,255,255,.12); }
+      .ft-grid { grid-template-columns:1fr; }
+      .hero-title { font-size:2.4rem; }
+      .rev-card { padding:24px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- WhatsApp Float -->
+<a href="https://wa.me/919090606037" class="wa-float" target="_blank" title="Chat on WhatsApp">
+  <i class="fab fa-whatsapp"></i>
+</a>
+
+<!-- ═══ NAVBAR ═══════════════════════════════════════════ -->
+<nav id="nav">
+  <div class="nav-logo-wrap">
+    <img src="LOGO WITH NAME.png" alt="Aamba Residency" />
+  </div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#rooms">Rooms</a></li>
+    <li><a href="#amenities">Amenities</a></li>
+    <li><a href="#reviews">Reviews</a></li>
+    <li><a href="#location">Location</a></li>
+    <li><a href="#book" class="nav-book">Book Now</a></li>
+  </ul>
+</nav>
+
+<!-- ═══ HERO ═════════════════════════════════════════════ -->
+<section id="hero">
+  <div class="hb-circle c1"></div>
+  <div class="hb-circle c2"></div>
+  <div class="hb-circle c3"></div>
+  <div class="hb-circle c4"></div>
+  <div class="hero-inner">
+    <div class="hero-pill">✦ Premium Stay · Sundargarh, Odisha ✦</div>
+    <h1 class="hero-title">Welcome to<br><em>Aamba Residency</em></h1>
+    <p class="hero-sub">Safe &nbsp;·&nbsp; Comfortable &nbsp;·&nbsp; Feels Like Home</p>
+    <div class="hero-loc"><i class="fas fa-map-marker-alt"></i> Aamba Tower, Hospital Road, Sundargarh – 770001</div>
+    <div class="hero-btns">
+      <a href="#book" class="btn btn-gold"><i class="fas fa-bed"></i> Book a Room</a>
+      <a href="#about" class="btn btn-ghost"><i class="fas fa-compass"></i> Explore</a>
+    </div>
+  </div>
+  <div class="scroll-hint">Scroll</div>
+</section>
+
+<!-- ═══ STATS RIBBON ══════════════════════════════════════ -->
+<div class="stats-ribbon">
+  <div class="stat reveal"><span class="stat-n">20</span><span class="stat-l">AC Rooms</span></div>
+  <div class="stat reveal"><span class="stat-n">24/7</span><span class="stat-l">Front Desk</span></div>
+  <div class="stat reveal"><span class="stat-n">Free</span><span class="stat-l">Buffet Breakfast</span></div>
+  <div class="stat reveal"><span class="stat-n">₹1,500</span><span class="stat-l">Starts From / Night</span></div>
+</div>
+
+<!-- ═══ ABOUT ══════════════════════════════════════════════ -->
+<section id="about" class="section">
+  <div class="about-wrap">
+    <div class="about-card reveal">
+      <div class="ac-icon"><i class="fas fa-hotel"></i></div>
+      <h3>Your Home Away From Home</h3>
+      <p>Experience genuine warmth, modern comforts, and a safe environment right in the heart of Sundargarh, Odisha.</p>
+      <div class="ac-chips">
+        <span class="ac-chip">Safe Stay</span>
+        <span class="ac-chip">Comfortable</span>
+        <span class="ac-chip">Affordable</span>
+        <span class="ac-chip">Hygienic</span>
+        <span class="ac-chip">Family Friendly</span>
+      </div>
+    </div>
+    <div class="about-text reveal">
+      <div class="sh-tag">About Us</div>
+      <h2>A Premier Hotel in Sundargarh</h2>
+      <p>Aamba Residency is Sundargarh's trusted destination for comfortable and quality accommodation. Located in Aamba Tower on Hospital Road, we offer 20 well-appointed, air-conditioned rooms designed to make you feel right at home.</p>
+      <p>Whether you're here for business, leisure, or a family trip, our round-the-clock service, multi-cuisine dining, and thoughtful amenities ensure a memorable stay every time.</p>
+      <ul class="check-list">
+        <li><i class="fas fa-check-circle"></i>20 clean, spacious, air-conditioned rooms</li>
+        <li><i class="fas fa-check-circle"></i>Multi-cuisine restaurant on premises</li>
+        <li><i class="fas fa-check-circle"></i>Complimentary buffet breakfast every morning</li>
+        <li><i class="fas fa-check-circle"></i>Conference &amp; banquet facilities</li>
+        <li><i class="fas fa-check-circle"></i>Airport transfer &amp; laundry service</li>
+        <li><i class="fas fa-check-circle"></i>Staff speak English, Hindi &amp; Odia</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ ROOMS ══════════════════════════════════════════════ -->
+<section id="rooms" class="section">
+  <div class="sh reveal">
+    <div class="sh-tag">Accommodation</div>
+    <h2 class="sh-title">Our Rooms</h2>
+    <div class="sh-line"></div>
+    <p class="sh-desc">Every room is air-conditioned, spotlessly clean, and fully equipped for a perfect stay.</p>
+  </div>
+  <div class="rooms-grid">
+
+    <div class="room-card reveal">
+      <div class="room-thumb t1">
+        <i class="fas fa-bed"></i>
+        <span class="room-badge">Most Popular</span>
+      </div>
+      <div class="room-body">
+        <h3>Classic &amp; Deluxe Room</h3>
+        <p>Perfect for solo travelers, couples, and business guests. Clean, cozy, and packed with all essentials for a relaxing stay.</p>
+        <div class="room-tags">
+          <span class="rtag"><i class="fas fa-snowflake"></i> AC</span>
+          <span class="rtag"><i class="fas fa-tv"></i> Satellite TV</span>
+          <span class="rtag"><i class="fas fa-coffee"></i> Breakfast Incl.</span>
+          <span class="rtag"><i class="fas fa-shower"></i> Attached Bath</span>
+          <span class="rtag"><i class="fas fa-smoking-ban"></i> Non-Smoking</span>
+          <span class="rtag">English · Hindi · ଓଡ଼ିଆ</span>
+        </div>
+        <div class="room-price">
+          <span class="amt">₹1,500</span>&nbsp;<span class="per">/ night &nbsp;·&nbsp; Double Occupancy</span>
+          <span class="extra"><i class="fas fa-user-plus" style="color:var(--navy);font-size:.7rem"></i> &nbsp;Extra person: ₹500 per night</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="room-card reveal">
+      <div class="room-thumb t3">
+        <i class="fas fa-star"></i>
+        <span class="room-badge">Premium</span>
+      </div>
+      <div class="room-body">
+        <h3>Suite Room</h3>
+        <p>Our premium suite — superior furnishings, extra space, flatscreen TV, and full room service available at your call.</p>
+        <div class="room-tags">
+          <span class="rtag"><i class="fas fa-snowflake"></i> AC</span>
+          <span class="rtag"><i class="fas fa-tv"></i> Flatscreen TV</span>
+          <span class="rtag"><i class="fas fa-coffee"></i> Breakfast Incl.</span>
+          <span class="rtag"><i class="fas fa-concierge-bell"></i> Room Service</span>
+          <span class="rtag"><i class="fas fa-smoking-ban"></i> Non-Smoking</span>
+          <span class="rtag">English · Hindi · ଓଡ଼ିଆ</span>
+        </div>
+        <div class="room-price">
+          <span class="amt">₹2,000</span>&nbsp;<span class="per">/ night &nbsp;·&nbsp; Double Occupancy</span>
+          <span class="extra"><i class="fas fa-user-plus" style="color:var(--navy);font-size:.7rem"></i> &nbsp;Extra person: ₹500 per night</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══ AMENITIES ══════════════════════════════════════════ -->
+<section id="amenities" class="section">
+  <div class="sh reveal">
+    <div class="sh-tag">Facilities</div>
+    <h2 class="sh-title">Amenities &amp; Services</h2>
+    <div class="sh-line"></div>
+    <p class="sh-desc">Everything you need for a comfortable and memorable stay — all under one roof.</p>
+  </div>
+
+  <!-- Breakfast Feature Banner -->
+  <div class="breakfast-banner reveal">
+    <div class="bb-icon-wrap"><i class="fas fa-utensils"></i></div>
+    <div class="bb-text">
+      <div class="bb-exclusive">✦ Exclusive to Aamba Residency ✦</div>
+      <h3>Free Unlimited Buffet Breakfast</h3>
+      <p>
+        The <strong>biggest breakfast spread in Sundargarh</strong> — included free with every room. Choose from a wide variety of freshly prepared dishes every morning.
+        We are proud to be the <strong>only hotel in Sundargarh</strong> offering this extensive a breakfast buffet.
+      </p>
+      <div class="bb-items">
+        <span class="bb-item">🍛 North Indian</span>
+        <span class="bb-item">🥞 South Indian</span>
+        <span class="bb-item">🍳 Eggs &amp; Omelettes</span>
+        <span class="bb-item">🥣 Cereals &amp; Fruits</span>
+        <span class="bb-item">🍞 Bread &amp; Toast</span>
+        <span class="bb-item">☕ Tea &amp; Coffee</span>
+        <span class="bb-item">+ Much More</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Amenities Grid -->
+  <div class="amen-grid">
+    <div class="amen-card reveal"><div class="amen-ico"><i class="fas fa-car"></i></div><div class="amen-name">Free Parking</div></div>
+    <div class="amen-card reveal"><div class="amen-ico"><i class="fas fa-utensils"></i></div><div class="amen-name">Restaurant</div></div>
+    <div class="amen-card reveal"><div class="amen-ico"><i class="fas fa-chalkboard-teacher"></i></div><div class="amen-name">Conference Hall</div></div>
+    <div class="amen-card reveal"><div class="amen-ico"><i class="fas fa-concierge-bell"></i></div><div class="amen-name">24/7 Room Service</div></div>
+    <div class="amen-card reveal"><div class="amen-ico"><i class="fas fa-broom"></i></div><div class="amen-name">Housekeeping</div></div>
+    <div class="amen-card reveal"><div class="amen-ico"><i class="fas fa-plane-departure"></i></div><div class="amen-name">Airport Transfer</div></div>
+    <div class="amen-card reveal"><div class="amen-ico"><i class="fas fa-tshirt"></i></div><div class="amen-name">Laundry</div></div>
+    <div class="amen-card reveal"><div class="amen-ico"><i class="fas fa-first-aid"></i></div><div class="amen-name">First Aid</div></div>
+    <div class="amen-card reveal">
+      <div class="amen-ico"><i class="fas fa-motorcycle"></i></div>
+      <div class="amen-name">Scooties for Hire</div>
+    </div>
+  </div>
+
+  <!-- Scooty note -->
+  <p style="text-align:center;margin-top:20px;color:var(--muted);font-size:.85rem;">
+    <i class="fas fa-info-circle" style="color:var(--gold)"></i>&nbsp;
+    Scooties available for our room guests at minimal prices. Contact the reception for details.
+  </p>
+</section>
+
+<!-- ═══ REVIEWS ════════════════════════════════════════════ -->
+<section id="reviews" class="section">
+  <div class="sh reveal">
+    <div class="sh-tag">Guest Experiences</div>
+    <h2 class="sh-title">What Our Guests Say</h2>
+    <div class="sh-line"></div>
+    <p class="sh-desc">Real reviews from guests who stayed at Aamba Residency.</p>
+  </div>
+
+  <div class="reviews-slider-wrap reveal">
+    <div class="reviews-track-outer">
+      <div class="reviews-track" id="reviewsTrack">
+
+        <!-- Review 1 -->
+        <div class="rev-slide">
+          <div class="rev-card">
+            <div class="rev-gmap-header">
+              <div class="rev-g-logo">
+                <span class="g-b">G</span><span class="g-r">o</span><span class="g-y">o</span><span class="g-b">g</span><span class="g-g">l</span><span class="g-r">e</span>
+              </div>
+              <span class="gmaps-label">Maps Review</span>
+            </div>
+            <div class="rev-reviewer">
+              <div class="rev-avatar" style="background:#1B2A6B;">P</div>
+              <div class="rev-reviewer-info">
+                <strong>Priya Sharma</strong>
+                <span>Local Guide · 12 reviews</span>
+              </div>
+            </div>
+            <div class="rev-stars">★★★★★</div>
+            <p class="rev-text">"We had a wonderful stay at Aamba Residency with our family. The rooms were exceptionally clean and well-maintained, giving a fresh and hygienic feel. The staff was polite, helpful, and always ready to assist with a smile. Their friendly behavior made us feel truly welcomed. The overall atmosphere was peaceful and perfect for a relaxing family getaway."</p>
+            <div class="rev-via"><i class="fab fa-google"></i> Posted on Google Maps</div>
+          </div>
+        </div>
+
+        <!-- Review 2 -->
+        <div class="rev-slide">
+          <div class="rev-card">
+            <div class="rev-gmap-header">
+              <div class="rev-g-logo">
+                <span class="g-b">G</span><span class="g-r">o</span><span class="g-y">o</span><span class="g-b">g</span><span class="g-g">l</span><span class="g-r">e</span>
+              </div>
+              <span class="gmaps-label">Maps Review</span>
+            </div>
+            <div class="rev-reviewer">
+              <div class="rev-avatar" style="background:#2A7A3E;">R</div>
+              <div class="rev-reviewer-info">
+                <strong>Rahul Mishra</strong>
+                <span>Sundargarh · 8 reviews</span>
+              </div>
+            </div>
+            <div class="rev-stars">★★★★★</div>
+            <p class="rev-text">"Excellent value for money! Staff was super friendly and rooms were clean and comfortable. The breakfast spread is absolutely amazing — I've never seen such a wide variety in Sundargarh. Definitely the best hotel in town. Will stay here every time I visit!"</p>
+            <div class="rev-via"><i class="fab fa-google"></i> Posted on Google Maps</div>
+          </div>
+        </div>
+
+        <!-- Review 3 -->
+        <div class="rev-slide">
+          <div class="rev-card">
+            <div class="rev-gmap-header">
+              <div class="rev-g-logo">
+                <span class="g-b">G</span><span class="g-r">o</span><span class="g-y">o</span><span class="g-b">g</span><span class="g-g">l</span><span class="g-r">e</span>
+              </div>
+              <span class="gmaps-label">Maps Review</span>
+            </div>
+            <div class="rev-reviewer">
+              <div class="rev-avatar" style="background:#D4891A;">S</div>
+              <div class="rev-reviewer-info">
+                <strong>Sunita Das</strong>
+                <span>Rourkela · 5 reviews</span>
+              </div>
+            </div>
+            <div class="rev-stars">★★★★★</div>
+            <p class="rev-text">"Best hotel in Sundargarh by a long margin! Clean, comfortable, and the staff is incredibly helpful and warm. The buffet breakfast is truly a highlight — multiple dishes to pick from every morning. Great value for the price. We will definitely come back on our next visit."</p>
+            <div class="rev-via"><i class="fab fa-google"></i> Posted on Google Maps</div>
+          </div>
+        </div>
+
+        <!-- Review 4 -->
+        <div class="rev-slide">
+          <div class="rev-card">
+            <div class="rev-gmap-header">
+              <div class="rev-g-logo">
+                <span class="g-b">G</span><span class="g-r">o</span><span class="g-y">o</span><span class="g-b">g</span><span class="g-g">l</span><span class="g-r">e</span>
+              </div>
+              <span class="gmaps-label">Maps Review</span>
+            </div>
+            <div class="rev-reviewer">
+              <div class="rev-avatar" style="background:#4285F4;">A</div>
+              <div class="rev-reviewer-info">
+                <strong>Ankit Verma</strong>
+                <span>Bhubaneswar · 20 reviews</span>
+              </div>
+            </div>
+            <div class="rev-stars">★★★★★</div>
+            <p class="rev-text">"Great hospitality and very comfortable rooms. The staff went above and beyond to make our stay pleasant. Centrally located, easily accessible, and the restaurant serves delicious food. The scooties for hire was a brilliant idea — made exploring the town so easy!"</p>
+            <div class="rev-via"><i class="fab fa-google"></i> Posted on Google Maps</div>
+          </div>
+        </div>
+
+        <!-- Review 5 -->
+        <div class="rev-slide">
+          <div class="rev-card">
+            <div class="rev-gmap-header">
+              <div class="rev-g-logo">
+                <span class="g-b">G</span><span class="g-r">o</span><span class="g-y">o</span><span class="g-b">g</span><span class="g-g">l</span><span class="g-r">e</span>
+              </div>
+              <span class="gmaps-label">Maps Review</span>
+            </div>
+            <div class="rev-reviewer">
+              <div class="rev-avatar" style="background:#EA4335;">V</div>
+              <div class="rev-reviewer-info">
+                <strong>Vikash Panda</strong>
+                <span>Sundargarh · 3 reviews</span>
+              </div>
+            </div>
+            <div class="rev-stars">★★★★★</div>
+            <p class="rev-text">"Had a fantastic stay here. The hotel is well maintained and the staff is professional and courteous. Food quality at the restaurant is excellent. A nice and peaceful place to stay in Sundargarh. Would highly recommend to anyone visiting the area!"</p>
+            <div class="rev-via"><i class="fab fa-google"></i> Posted on Google Maps</div>
+          </div>
+        </div>
+
+      </div><!-- /reviews-track -->
+    </div><!-- /track-outer -->
+
+    <div class="slider-arrows">
+      <button class="sldr-btn" id="revPrev"><i class="fas fa-chevron-left"></i></button>
+      <button class="sldr-btn" id="revNext"><i class="fas fa-chevron-right"></i></button>
+    </div>
+    <div class="slider-dots" id="revDots"></div>
+  </div>
+</section>
+
+<!-- ═══ BOOK ONLINE ════════════════════════════════════════ -->
+<section id="book" class="section">
+  <div class="sh">
+    <div class="sh-tag">Reserve Your Stay</div>
+    <h2 class="sh-title">Book Online</h2>
+    <div class="sh-line"></div>
+    <p class="sh-desc">Book through India's most trusted travel platforms for instant confirmation and the best rates.</p>
+  </div>
+  <div class="booking-row">
+    <a href="https://www.makemytrip.com/hotels/hotel-listing/?checkin=&checkout=&roomCount=1&adultsCount=1&childCount=0&country=IN&city=Sundargarh&searchText=Aamba+Residency+Sundargarh" target="_blank" class="plat-card reveal">
+      <div class="plat-logo mmt">MakeMyTrip</div>
+      <div class="plat-sub">India's #1 Travel Platform</div>
+      <div class="plat-btn mmt-btn">Search &amp; Book &rarr;</div>
+    </a>
+    <a href="https://www.goibibo.com/hotels/hotels-in-sundargarh/?q=Aamba+Residency+Sundargarh" target="_blank" class="plat-card reveal">
+      <div class="plat-logo goib">Goibibo</div>
+      <div class="plat-sub">Fast, Easy &amp; Instant Booking</div>
+      <div class="plat-btn goib-btn">Search &amp; Book &rarr;</div>
+    </a>
+  </div>
+  <p class="book-or">Prefer to call? &nbsp;<a href="tel:+919090606037">+91 90906 06037</a></p>
+</section>
+
+<!-- ═══ LOCATION & CONTACT ════════════════════════════════ -->
+<section id="location" class="section">
+  <div class="sh reveal">
+    <div class="sh-tag">Find Us</div>
+    <h2 class="sh-title">Location &amp; Contact</h2>
+    <div class="sh-line"></div>
+  </div>
+  <div class="loc-wrap">
+    <div class="map-box reveal">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3692.0!2d84.0344300!3d22.1157937!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a20ecb864f181b7%3A0xbadf81c403fdffe1!2sAamba%20Residency!5e0!3m2!1sen!2sin!4v1716220000000"
+        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </div>
+    <div class="loc-info reveal">
+      <h3>Get in Touch</h3>
+      <a href="tel:+919090606037" class="ci">
+        <div class="ci-ico"><i class="fas fa-phone"></i></div>
+        <div><div class="ci-label">Hotel Reception</div><div class="ci-value">+91 90906 06037</div></div>
+      </a>
+      <a href="tel:+919090606038" class="ci">
+        <div class="ci-ico"><i class="fas fa-utensils"></i></div>
+        <div><div class="ci-label">Restaurant</div><div class="ci-value">+91 90906 06038</div></div>
+      </a>
+      <a href="mailto:aambaresidency@gmail.com" class="ci">
+        <div class="ci-ico"><i class="fas fa-envelope"></i></div>
+        <div><div class="ci-label">Email</div><div class="ci-value">aambaresidency@gmail.com</div></div>
+      </a>
+      <div class="ci">
+        <div class="ci-ico"><i class="fas fa-map-marker-alt"></i></div>
+        <div><div class="ci-label">Address</div><div class="ci-value">Aamba Tower, Hospital Road,<br>Sundargarh, Odisha – 770001</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ════════════════════════════════════════════ -->
+<footer>
+  <div class="ft-grid">
+    <div class="ft-brand">
+      <div class="ft-logo-wrap">
+        <img src="LOGO WITH NAME.png" alt="Aamba Residency" />
+      </div>
+      <p>Your trusted home away from home in Sundargarh. Comfortable stays, warm hospitality, and memories that last a lifetime.</p>
+    </div>
+    <div class="ft-col">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#rooms">Rooms</a></li>
+        <li><a href="#amenities">Amenities</a></li>
+        <li><a href="#reviews">Reviews</a></li>
+        <li><a href="#location">Location</a></li>
+        <li><a href="#book">Book Now</a></li>
+      </ul>
+    </div>
+    <div class="ft-col">
+      <h4>Contact</h4>
+      <ul>
+        <li><a href="tel:+919090606037">Hotel: +91 90906 06037</a></li>
+        <li><a href="tel:+919090606038">Restaurant: +91 90906 06038</a></li>
+        <li><a href="https://www.makemytrip.com/hotels/hotel-listing/?city=Sundargarh&searchText=Aamba+Residency" target="_blank">MakeMyTrip</a></li>
+        <li><a href="https://www.goibibo.com/hotels/hotels-in-sundargarh/?q=Aamba+Residency" target="_blank">Goibibo</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="ft-bottom">
+    <span>© 2025 Aamba Residency. All Rights Reserved.</span>
+    <div class="socials">
+      <a href="https://www.facebook.com/aambaresidency/" class="soc" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+      <a href="https://www.instagram.com/aambaresidency/" class="soc" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="https://wa.me/919090606037" class="soc" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Sticky navbar
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => nav.classList.toggle('stuck', window.scrollY > 60));
+
+  // Scroll reveal
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('up'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+  // Reviews slider
+  (function(){
+    const track  = document.getElementById('reviewsTrack');
+    const slides = track.querySelectorAll('.rev-slide');
+    const dots   = document.getElementById('revDots');
+    let cur = 0, timer;
+
+    // Build dots
+    slides.forEach((_, i) => {
+      const d = document.createElement('div');
+      d.className = 's-dot' + (i === 0 ? ' active' : '');
+      d.addEventListener('click', () => goTo(i));
+      dots.appendChild(d);
+    });
+
+    function goTo(n) {
+      cur = (n + slides.length) % slides.length;
+      track.style.transform = `translateX(-${cur * 100}%)`;
+      dots.querySelectorAll('.s-dot').forEach((d, i) => d.classList.toggle('active', i === cur));
+    }
+
+    document.getElementById('revPrev').addEventListener('click', () => { clearInterval(timer); goTo(cur - 1); startAuto(); });
+    document.getElementById('revNext').addEventListener('click', () => { clearInterval(timer); goTo(cur + 1); startAuto(); });
+
+    function startAuto() { timer = setInterval(() => goTo(cur + 1), 5000); }
+    startAuto();
+  })();
+</script>
+
+</body>
+</html>
